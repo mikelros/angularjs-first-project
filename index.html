@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <title>A little Angular site</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.4.1/jasmine.min.css">
+  <link rel="stylesheet" href="styles/app.css">
+</head>
+<body ng-app="myApp" id="app" ng-cloak>
+  <div>
+    <img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" class="logo"/>
+  </div>
+  <div ng-controller="SearchCtrl as search">
+    <label for="user">User</label>
+    <input type="text" id="user" name="user" ng-model="search.user"/>
+    <label for="repo">Repo</label>
+    <input type="text" id="repo" name="repo" ng-model="search.repo"/>
+    <br/>
+    <br/>
+    <button ng-click="search.getCollaborators(search.user, search.repo)" class="btn btn-default">Search</button>
+    <button ng-click="search.clear()" class="btn btn-default">Clear</button>
+    <h3 ng-if="search.isError" class='text-danger'>{{ search.error }}</h3>
+  </div>
+
+  <div ng-controller="ListCtrl as list">
+    <div ng-repeat="collaborator in list.collaborators">
+      <h2>{{ collaborator.login }}</h2>
+      <img src="{{collaborator.avatar_url}}" width=200/>
+    </div>
+  </div>
+
+  <br/>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.4.1/jasmine.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.4.1/jasmine-html.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.4.1/boot.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-mocks/1.5.1/angular-mocks.min.js"></script>
+  <script src="scripts/app.js"></script>
+  <script src="scripts/collaborators.js"></script>
+  <script src="scripts/collaborators.factory.js"></script>
+  <script src="scripts/collaboratorsClient.js"></script>
+  <script src="scripts/collaboratorsClient.factory.js"></script>
+  <script src="scripts/search.controller.js"></script>
+  <script src="scripts/search.controllers.js"></script>
+  <script src="scripts/list.controller.js"></script>
+  <script src="scripts/list.controllers.js"></script>
+  <script src="tests/list.controllers.spec.js"></script>
+  <script src="tests/search.controllers.spec.js"></script>
+  <script src="tests/collaboratorsClient.spec.js"></script>
+  <script src="tests/collaborators.spec.js"></script>
+</body>
+</html>

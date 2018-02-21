@@ -1,0 +1,12 @@
+.logo {
+  width: 300px;
+  padding: 30px;
+}
+
+#app {
+  padding: 30px;
+}
+
+input {
+  display: block;
+}
